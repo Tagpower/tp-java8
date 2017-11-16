@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Exercice 4 - java.util.function.Predicate
@@ -30,7 +31,7 @@ public class Function_04_Test {
     // tag::adult[]
     // TODO Compléter la fonction
     // TODO AGE >=18
-    Predicate<Person> adult = null;
+    Predicate<Person> adult = p -> p.getAge() >= 18;
     // end::adult[]
 
     @Test
@@ -39,7 +40,9 @@ public class Function_04_Test {
         List<Person> personList = Data.buildPersonList();
 
         // TODO invoquer la méthode filter pour que le test soit passant
-        List<Person> result = null;
+        List<Person> result = personList.stream()
+        						.filter(adult)
+        						.collect(Collectors.toList());
 
         assert result.size() == 4;
 
@@ -65,7 +68,7 @@ public class Function_04_Test {
 
         // TODO invoquer la méthode filter pour que le test soit passant
         // TODO chaîner les prédicats adult, lastnameIsFrance et firstnameIsArmor avec la méthode and
-        List<Person> result = null;
+        List<Person> result = personList.stream().filter(firstnameIsArmor).filter(lastnameIsFrance).collect(Collectors.toList());
 
         assert result.size() == 1;
         assert result.get(0).getFirstname().equals("Armor");
