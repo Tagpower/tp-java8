@@ -18,6 +18,13 @@ public class Method_01_Test {
         List<Person> findAll();
 
         // TODO créer une méthode int sumAge()
+        default int sumAge() {
+        	int sum = 0;
+        	for (Person p : findAll()) {
+        		sum += p.getAge();
+        	}
+        	return sum;
+        }
         // TODO Cette méthode retourne le résultat de l'addition des ages des personnes
     }
     // end::IDao[]
@@ -49,6 +56,8 @@ public class Method_01_Test {
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
         int result = 0;
+        
+        result = daoA.sumAge();
 
         assert result == 210;
     }
@@ -61,6 +70,8 @@ public class Method_01_Test {
         // TODO invoquer la méthode sumAge pour que le test soit passant
         int result = 0;
 
+        result = daoB.sumAge();
+        
         assert result == 5050;
 
     }
